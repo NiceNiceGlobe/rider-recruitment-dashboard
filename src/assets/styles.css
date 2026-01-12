@@ -1,0 +1,229 @@
+:root {
+  --brand-purple: #6f42c1;
+  --brand-black: #212529;
+  --brand-white: #ffffff;
+  --light-purple: #f8f9fa;
+  --sidebar-width: 250px;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f5f5;
+  color: var(--brand-black);
+  overflow-x: hidden;
+}
+
+.navbar-brand {
+  font-weight: 600;
+  color: var(--brand-purple) !important;
+}
+
+.sidebar {
+  width: var(--sidebar-width);
+  background-color: var(--brand-white);
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+  height: calc(100vh - 56px);
+  position: fixed;
+  top: 56px;
+  left: 0;
+  overflow-y: auto;
+  z-index: 100;
+  transition: transform 0.3s ease;
+}
+
+.main-content {
+  margin-left: var(--sidebar-width);
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+}
+
+@media (max-width: 992px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+
+  .sidebar.show {
+    transform: translateX(0);
+  }
+
+  .main-content {
+    margin-left: 0;
+  }
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-menu li {
+  margin-bottom: 5px;
+}
+
+.sidebar-menu a {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  color: var(--brand-black);
+  text-decoration: none;
+  border-left: 4px solid transparent;
+  transition: all 0.2s;
+}
+
+.sidebar-menu a:hover {
+  background-color: rgba(111, 66, 193, 0.05);
+  color: var(--brand-purple);
+  border-left-color: var(--brand-purple);
+}
+
+.sidebar-menu a.active {
+  background-color: rgba(111, 66, 193, 0.1);
+  color: var(--brand-purple);
+  border-left-color: var(--brand-purple);
+  font-weight: 500;
+}
+
+.bg-purple {
+  background-color: var(--brand-purple) !important;
+}
+
+.sidebar-menu i {
+  margin-right: 10px;
+  width: 20px;
+  text-align: center;
+}
+
+.card {
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  margin-bottom: 20px;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+.dashboard-card {
+  border-left: 5px solid var(--brand-purple);
+}
+
+.city-progress {
+  height: 25px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.progress-bar {
+  background-color: var(--brand-purple);
+}
+
+.status-badge {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.status-new { background-color: #e3f2fd; color: #1565c0; }
+.status-verification { background-color: #fff3e0; color: #ef6c00; }
+.status-training { background-color: #e8f5e9; color: #2e7d32; }
+.status-trained { background-color: #f3e5f5; color: #7b1fa2; }
+.status-awaiting { background-color: #fff8e1; color: #ff8f00; }
+.status-deployed,
+.status-complete { background-color: #e8f5e9; color: #2e7d32; }
+.status-info-shared { background-color: #e3f2fd; color: #1565c0; }
+.status-not-on-wa { background-color: #ffebee; color: #c62828; }
+.status-going-to-office { background-color: #fff3e0; color: #ef6c00; }
+.status-looking-for-car { background-color: #e1f5fe; color: #0277bd; }
+
+.btn-brand {
+  background-color: var(--brand-purple);
+  color: var(--brand-white);
+  border: none;
+}
+
+.btn-brand:hover {
+  background-color: #5a32a3;
+}
+
+.btn-outline-brand {
+  border-color: var(--brand-purple);
+  color: var(--brand-purple);
+}
+
+.btn-outline-brand:hover {
+  background-color: var(--brand-purple);
+  color: var(--brand-white);
+}
+
+.table th {
+  background-color: var(--light-purple);
+  border-top: none;
+  font-weight: 600;
+}
+
+.table-hover tbody tr:hover {
+  background-color: rgba(111, 66, 193, 0.05);
+}
+
+.search-container {
+  position: relative;
+}
+
+.search-container i {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6c757d;
+}
+
+.search-container input {
+  padding-left: 45px;
+}
+
+.modal-header {
+  background-color: var(--brand-purple);
+  color: var(--brand-white);
+}
+
+.stats-number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--brand-purple);
+}
+
+.stats-label {
+  font-size: 0.9rem;
+  color: #6c757d;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.sidebar-toggle {
+  display: none;
+}
+
+@media (max-width: 992px) {
+  .sidebar-toggle {
+    display: block;
+  }
+
+  .action-btns {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .action-btns .btn {
+    width: 100%;
+    margin: 2px 0;
+  }
+}
+
+.deployed-rider-card {
+  border-left: 4px solid #2e7d32;
+  background-color: #f1f8e9;
+}
