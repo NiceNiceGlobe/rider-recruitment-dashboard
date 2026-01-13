@@ -17,7 +17,7 @@ export default function Login() {
 
     try {
       const response = await apiClient.post("/Account/login", {
-        userName: email,
+        email: email,
         password,
         rememberMe: true,
       });
