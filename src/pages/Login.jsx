@@ -16,31 +16,28 @@ export default function Login() {
     setLoading(true);
 
     try {
-      const response = await apiClient.post("/Account/login", {
-        email: email,
+      const response = await apiClient.post("/account/login", {
+        email,
         password,
         rememberMe: true,
       });
 
-      // store logged-in user
+      const { id, email: userEmail, roles } = response.data;
+
       localStorage.setItem(
         "user",
-        JSON.stringify(response.data.user)
+        JSON.stringify({ id, email: userEmail, roles })
       );
 
-      const role = response.data.user.role;
-
-      // TEMP routing logic (can refine later)
-      if (role === "Recruiter" || role === "Admin") {
-        navigate("/");
+      if (roles.includes("Recruiter")) {
+        navigate("/dashboard");
+      } else if (roles.includes("Admin")) {
+        navigate("/admin/dashboard");
       } else {
         navigate("/");
       }
     } catch (err) {
-      setError(
-        err.response?.data?.errors?.[0] ||
-          "Invalid email or password."
-      );
+      setError("Invalid email or password.");
     } finally {
       setLoading(false);
     }
