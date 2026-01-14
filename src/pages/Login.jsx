@@ -16,27 +16,31 @@ export default function Login() {
     setLoading(true);
 
     try {
-      const response = await apiClient.post("/account/login", {
-        email,
-        password,
-        rememberMe: true,
-      });
+      const response = await apiClient.post(
+        "/account/login",
+        {
+          email,
+          password,
+          rememberMe: true,
+        },
+        { withCredentials: true }
+      );
 
       const { id, email: userEmail, roles } = response.data;
+
+      if (!roles.includes("Admin")) {
+        localStorage.removeItem("user");
+        setError("Access denied.");
+        return;
+      }
 
       localStorage.setItem(
         "user",
         JSON.stringify({ id, email: userEmail, roles })
       );
 
-      if (roles.includes("Recruiter")) {
-        navigate("/dashboard");
-      } else if (roles.includes("Admin")) {
-        navigate("/admin/dashboard");
-      } else {
-        navigate("/");
-      }
-    } catch (err) {
+      navigate("/dashboard");
+    } catch {
       setError("Invalid email or password.");
     } finally {
       setLoading(false);
